@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 
 import pandas as pd
 
-df = pd.read_csv('url goes here')
+df = pd.read_csv('https://github.com/marestaing/hosting/blob/main/visited_states.csv?raw=true')
 
 fig = go.Figure(data=go.Choropleth(
     locations=df['code'], # Spatial coordinates
