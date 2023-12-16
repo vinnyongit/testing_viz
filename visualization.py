@@ -1,20 +1,20 @@
-import plotly.graph_objects as go
-
 import pandas as pd
+import plotly.express as px
 
-df = pd.read_csv('https://github.com/marestaing/hosting/blob/main/visited_states.csv?raw=true')
+csv_url = "https://github.com/marestaing/hosting/blob/main/visited_states.csv?raw=true"
+df = pd.read_csv(csv_url)
 
-fig = go.Figure(data=go.Choropleth(
-    locations=df['code'], # Spatial coordinates
-    z = df['number students'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
-    colorscale = 'Blues',
-    colorbar_title = "color scale title",
-))
 
-fig.update_layout(
-    title_text = 'title here',
-    geo_scope='usa', # limite map scope to USA
+fig = px.choropleth(
+    df,
+    locations="State",  
+    locationmode="USA-states",
+    color="Count", 
+    scope="usa",
+    color_continuous_scale="Viridis",  
+    title="States Visited by APCSP Students",
+    labels={"Count": "Number of Students"}
 )
+
 
 fig.show()
